@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="employee" EntityType="Database1Model.employee" />
+    <EntitySet Name="employee_type" EntityType="Database1Model.employee_type" />
+    <EntitySet Name="postal_code" EntityType="Database1Model.postal_code" />
+    <AssociationSet Name="FK_employee_employee_type" Association="Database1Model.FK_employee_employee_type">
+      <End Role="employee_type" EntitySet="employee_type" />
+      <End Role="employee" EntitySet="employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_employee_postal_code" Association="Database1Model.FK_employee_postal_code">
+      <End Role="postal_code" EntitySet="postal_code" />
+      <End Role="employee" EntitySet="employee" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="employee_type_id" Type="Int32" Nullable="false" />
+    <Property Name="postal_code_id" Type="Int32" Nullable="false" />
+    <Property Name="deleted" Type="Int32" />
+    <NavigationProperty Name="employee_type" Relationship="Database1Model.FK_employee_employee_type" FromRole="employee" ToRole="employee_type" />
+    <NavigationProperty Name="postal_code" Relationship="Database1Model.FK_employee_postal_code" FromRole="employee" ToRole="postal_code" />
+  </EntityType>
+  <EntityType Name="employee_type">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="salaryperhour" Type="Int32" />
+    <NavigationProperty Name="employee" Relationship="Database1Model.FK_employee_employee_type" FromRole="employee_type" ToRole="employee" />
+  </EntityType>
+  <EntityType Name="postal_code">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="street" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="house_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="employee" Relationship="Database1Model.FK_employee_postal_code" FromRole="postal_code" ToRole="employee" />
+  </EntityType>
+  <Association Name="FK_employee_employee_type">
+    <End Type="Database1Model.employee_type" Role="employee_type" Multiplicity="1" />
+    <End Type="Database1Model.employee" Role="employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee_type">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="employee">
+        <PropertyRef Name="employee_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_employee_postal_code">
+    <End Type="Database1Model.postal_code" Role="postal_code" Multiplicity="1" />
+    <End Type="Database1Model.employee" Role="employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="postal_code">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="employee">
+        <PropertyRef Name="postal_code_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
