@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities">
+    <EntitySetMapping Name="employee">
+      <EntityTypeMapping TypeName="Database1Model.employee">
+        <MappingFragment StoreEntitySet="employee">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="postal_code_id" ColumnName="postal_code_id" />
+          <ScalarProperty Name="employee_type_id" ColumnName="employee_type_id" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id_number" ColumnName="id_number" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employee_type">
+      <EntityTypeMapping TypeName="Database1Model.employee_type">
+        <MappingFragment StoreEntitySet="employee_type">
+          <ScalarProperty Name="salaryperhour" ColumnName="salaryperhour" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="postal_code">
+      <EntityTypeMapping TypeName="Database1Model.postal_code">
+        <MappingFragment StoreEntitySet="postal_code">
+          <ScalarProperty Name="house_number" ColumnName="house_number" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
